@@ -3,7 +3,7 @@ package com.dumanli.springframework;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-record Person (String name, int age) {}
+record Person (String name, int age, Address address) {}
 record Address (String fistLine, String city) {}
 @Configuration
 public class HelloWorldConfiguration {
@@ -19,11 +19,26 @@ public class HelloWorldConfiguration {
 
     @Bean
     public Person person(){
-        return new Person("Melih", 22);
+        return new Person("Melih", 22, new Address("Baker Street", "London"));
     }
 
     @Bean
+    public Person person2MethodCall(){
+        return new Person(name(), age(), address());
+    }
+
+    @Bean
+    public Person person3Parameters(String name, int age, Address customName2){
+        return new Person(name, age, customName2);
+    }
+
+    @Bean(name = "customName")
     public Address address(){
         return new Address("Baker Street", "London");
+    }
+
+    @Bean(name = "customName2")
+    public Address address2(){
+        return new Address("Java Street", "London");
     }
 }
