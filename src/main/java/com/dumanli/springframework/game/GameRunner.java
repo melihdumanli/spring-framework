@@ -1,7 +1,10 @@
 package com.dumanli.springframework.game;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class GameRunner {
-    private GamingConsole game;
+    private final GamingConsole game;
 
     public GameRunner(GamingConsole game) {
         this.game = game;
